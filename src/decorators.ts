@@ -1,4 +1,4 @@
-import { ZodType } from 'zod';
+import { z } from 'zod';
 import {
   addClassGuardMetadata,
   addClassHeaderMetadata,
@@ -41,21 +41,21 @@ export const Patch = (path: string = '/') => {
   };
 };
 
-export const Body = (schema: ZodType<any>) => {
+export const Body = (schema: z.ZodType<any>) => {
   return (target: any, propertyKey: string, parameterIndex: number) => {
     addValidationMetadata(target.constructor, propertyKey, 'body', schema);
     addParameterMetadata(target.constructor, propertyKey, parameterIndex, 'body', schema);
   };
 };
 
-export const Query = (schema: ZodType<any>) => {
+export const Query = (schema: z.ZodType<any>) => {
   return (target: any, propertyKey: string, parameterIndex: number) => {
     addValidationMetadata(target.constructor, propertyKey, 'query', schema);
     addParameterMetadata(target.constructor, propertyKey, parameterIndex, 'query', schema);
   };
 };
 
-export const Params = (schema: ZodType<any>) => {
+export const Params = (schema: z.ZodType<any>) => {
   return (target: any, propertyKey: string, parameterIndex: number) => {
     addValidationMetadata(target.constructor, propertyKey, 'params', schema);
     addParameterMetadata(target.constructor, propertyKey, parameterIndex, 'params', schema);

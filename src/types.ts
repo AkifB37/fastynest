@@ -1,5 +1,5 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
-import { ZodSchema, ZodType } from 'zod';
+import { z } from 'zod';
 
 declare module 'fastify' {
   interface FastifyRequest {
@@ -33,9 +33,9 @@ export interface RouteMetadata {
   method: HttpMethod;
   path: string;
   handler: string;
-  bodySchema?: ZodSchema;
-  querySchema?: ZodSchema;
-  paramsSchema?: ZodSchema;
+  bodySchema?: z.ZodType<any>;
+  querySchema?: z.ZodType<any>;
+  paramsSchema?: z.ZodType<any>;
   guards: GuardFunction[];
   headers: { [key: string]: string | number };
   fileUpload?: FileUploadConfig;

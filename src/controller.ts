@@ -7,7 +7,7 @@ import { ControllerConfig } from './types';
 import { createErrorResponse } from './utils';
 import { validateRequest } from './validation';
 
-export const registerController = (app: FastifyInstance, controllerClass: any, prefix: string = '') => {
+export const registerController = (app: FastifyInstance | any, controllerClass: any, prefix: string = '') => {
   const instance = new controllerClass();
   const routes = routeMetadata.get(controllerClass) || [];
   const classGuards = guardMetadata.get(controllerClass) || [];
@@ -99,7 +99,7 @@ export const registerController = (app: FastifyInstance, controllerClass: any, p
   });
 };
 
-export const registerControllers = (app: FastifyInstance, configs: ControllerConfig[]) => {
+export const registerControllers = (app: FastifyInstance | any, configs: ControllerConfig[]) => {
   configs.forEach(config => {
     registerController(app, config.controller, config.prefix || '');
   });
