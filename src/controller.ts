@@ -104,3 +104,8 @@ export const registerControllers = (app: FastifyInstance, configs: ControllerCon
     registerController(app, config.controller, config.prefix || '');
   });
 };
+
+// Example usage:
+// registerControllers(app, [
+//   { controller: UserController, prefix: '/api/users' },
+// ]);

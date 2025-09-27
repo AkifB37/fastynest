@@ -1,5 +1,7 @@
 # fastynest Framework
 
+⚠️ **EXPERIMENTAL - ALPHA VERSION** ⚠️
+
 A powerful TypeScript decorator-based web framework built on top of Fastify. This framework provides a clean, modern approach to building REST APIs with built-in validation, authentication, file upload handling, and middleware management.
 
 ## Features
@@ -27,9 +29,8 @@ class UserController {
   }
 
   @Get('/users/:id')
-  @Params(z.object({ id: z.string() }))
-  async getUser(req, reply) {
-    const { id } = req.params;
+  async getUser(@Params(z.object({ id: z.string() })) params: any) {
+    const { id } = params;
     return { user: { id, name: 'John Doe' } };
   }
 
@@ -113,13 +114,14 @@ const QuerySchema = z.object({
 
 class ProductController {
   @Post('/products')
-  @Body(CreateProductSchema)
-  @Query(QuerySchema)
-  async createProduct(req, reply) {
-    // req.body is typed and validated
-    // req.query is typed and validated
-    const { name, price, category } = req.body;
-    const { page = 1, limit = 10 } = req.query;
+  async createProduct(
+    @Body(CreateProductSchema) body: any,
+    @Query(QuerySchema) query: any
+  ) {
+    // body is typed and validated
+    // query is typed and validated
+    const { name, price, category } = body;
+    const { page = 1, limit = 10 } = query;
 
     return { product: { id: '123', name, price, category } };
   }
@@ -313,9 +315,8 @@ class UserController {
   }
 
   @Get('/users/:id')
-  @Params(UserParamsSchema)
-  async getUser(req, reply) {
-    const { id } = req.params;
+  async getUser(@Params(UserParamsSchema) params: any) {
+    const { id } = params;
     // Fetch user by ID
     return { user: { id, name: 'John Doe' } };
   }
@@ -330,20 +331,20 @@ class UserController {
   }
 
   @Put('/users/:id')
-  @Params(UserParamsSchema)
-  @Body(UpdateUserSchema)
-  async updateUser(req, reply) {
-    const { id } = req.params;
-    const updates = req.body;
+  async updateUser(
+    @Params(UserParamsSchema) params: any,
+    @Body(UpdateUserSchema) body: any
+  ) {
+    const { id } = params;
+    const updates = body;
     // Update user
     return { user: { id, ...updates } };
   }
 
   @Delete('/users/:id')
-  @Params(UserParamsSchema)
   @UseGuard(adminGuard)
-  async deleteUser(req, reply) {
-    const { id } = req.params;
+  async deleteUser(@Params(UserParamsSchema) params: any, reply) {
+    const { id } = params;
     // Delete user (admin only)
     reply.status(204);
     return;
