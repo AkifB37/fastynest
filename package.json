@@ -1,6 +1,6 @@
 {
   "name": "fastynest",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Fastify framework project",
   "main": "dist/index.js",
   "scripts": {
@@ -19,7 +19,18 @@
     "nestjs",
     "decorator"
   ],
-  "author": "",
+  "author": "Akif Başormancı <akifbasormanci@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AkifB37/fastynest"
+  },
+  "bugs": {
+    "url": "https://github.com/AkifB37/fastynest/issues"
+  },
+  "homepage": "https://github.com/AkifB37/fastynest#readme",
+  "files": [
+    "dist"
+  ],
   "license": "MIT",
   "dependencies": {
     "fastify": "^4.29.1",

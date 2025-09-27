@@ -1,4 +1,4 @@
-# MBot Framework
+# fastynest Framework
 
 A powerful TypeScript decorator-based web framework built on top of Fastify. This framework provides a clean, modern approach to building REST APIs with built-in validation, authentication, file upload handling, and middleware management.
 
